@@ -6,12 +6,12 @@ This script reads IP addresses from STDIN and uses the MaxMind GeoIP databases t
 
 Look up a single IP address with default output format string:
 
-    $ echo 192.30.252.122 | ./ip2geo.py
+    echo 192.30.252.122 | ./ip2geo.py
     "192.30.252.122","37.7697","-122.3933","36459","GitHub, Inc."
 
 Generate custom output format for all IPs in a file (one per line):
 
-    $ cat file_of_ips.txt | ./ip2geo.py -f '%ip %asnum %cn'
+    cat file_of_ips.txt | ./ip2geo.py -f '%ip %asnum %cn'
     157.166.226.26 5662 United States
     192.30.252.122 36459 United States
     66.35.59.202 22625 United States
