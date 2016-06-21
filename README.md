@@ -1,6 +1,6 @@
 # ip2geo
 
-This script reads IP addresses from STDIN and uses the MaxMind GeoIP databases to output various data points for each source IP.  The script uses the GeoCityLite and ASN databases for enrichment.  The user can specify various fields for output in a format string.
+This script reads IP addresses from STDIN and uses the MaxMind GeoIP databases to output various data points for each source IP.  The script uses the GeoCityLite and ASN databases for enrichment.  The user can specify various fields for output in a format string.  You can use this script to download the GeoIP database files if needed as well.
 
 ## Usage
 
@@ -16,6 +16,14 @@ Generate custom output format for all IPs in a file (one per line):
     192.30.252.122 36459 United States
     66.35.59.202 22625 United States
     58.162.89.137 1221 Australia
+
+Download GeoIP database files:
+
+    ./ip2geo.py -d
+    Downloading: GeoLiteCity.dat.gz Bytes: 14022119
+     Decompressing GeoLiteCity.dat.gz
+    Downloading: GeoIPASNum.dat.gz Bytes: 2074034
+     Decompressing GeoIPASNum.dat.gz
 
 Display usage (including list of all format string tags):
 
