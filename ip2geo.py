@@ -146,7 +146,6 @@ while 1:
         break
 
     else:
-        # pdb.set_trace()
         # TODO: make sure line only has an IP address via regexp
 
         # do geo lookups on IP
