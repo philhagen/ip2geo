@@ -16,6 +16,7 @@ import os
 import gzip
 import shutil
 import re
+import fileinput
 
 try:
     import pygeoip
@@ -136,18 +137,12 @@ if args.download:
 
 (geocity, geoasn) = check_geoip_files(args.geoipdir)
 
-# loop over STDIN
-while 1:
-    line = sys.stdin.readline()
+# loop over input data
+for line in fileinput.input():
     line = line.strip()
 
-    # unlikely this will ever trip
-    if not line:
-        break
-
-    else:
-        # TODO: make sure line only has an IP address via regexp
-
+    # make sure line only has an IP address via regexp
+    if re.match(r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$', line):
         # do geo lookups on IP
         ipdata = geocity.record_by_addr(line)
         if ipdata == None:
