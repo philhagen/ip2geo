@@ -153,9 +153,10 @@ for line in sys.stdin:
         else:
             (asnum, asname) = (0, 'None')
         ipdata['ipaddress'] = line
-        ipdata['asnum'] = int(asnum)
+        ipdata['asnum'] = asnum
         ipdata['asname'] = asname
+        ipdata = {k: unicode(v).encode("utf-8") for k,v in ipdata.iteritems()}
 
         # print out fields in CSV format
-        output_string = output_re.sub(lambda x: str(ipdata[format_map[x.group()][0]]), args.format)
+        output_string = output_re.sub(lambda x: ipdata[format_map[x.group()][0]], args.format)
         print output_string
