@@ -4,7 +4,7 @@ This script reads IP addresses from STDIN and uses the MaxMind GeoIP databases t
 
 ## Usage
 
-Look up a single IP address with default output format string:
+Look up a single IP address and display results with default output format string:
 
     echo 192.30.252.122 | ./ip2geo.py
     "192.30.252.122","37.7697","-122.3933","36459","GitHub, Inc."
@@ -17,42 +17,42 @@ Generate custom output format for all IPs in a file (one per line):
     66.35.59.202 22625 United States
     58.162.89.137 1221 Australia
 
-Download GeoIP database files:
+Look up a single IP address and display results in JSON:
+
+    echo 192.30.252.122 | ./ip2geo.py -j
+    {"ipaddress": "192.30.252.122", "city": null, "region_code": null, "country_name": "United States", "postal_code": null, "country_code": "US", "continent": "North America", "metro_code": null, "time_zone": "America/Chicago", "latitude": 37.751, "longitude": -97.822, "asnum": 36459, "asname": "GitHub, Inc."}
+
+Download (or update) GeoIP database files:
 
     ./ip2geo.py -d
-    Downloading: GeoLiteCity.dat.gz Bytes: 14022119
-     Decompressing GeoLiteCity.dat.gz
-    Downloading: GeoIPASNum.dat.gz Bytes: 2074034
-     Decompressing GeoIPASNum.dat.gz
+    Downloading GeoIP database files.
 
 Display usage (including list of all format string tags):
 
     ./ip2geo.py -h
-    usage: ip2geo.py [-h] [-g GEOIPDIR] [-d] [-f FORMAT]
+    usage: ip2geo.py [-h] [-g GEOIPCONF] [-j] [-d] [-f FORMAT]
 
     Perform GeoIP lookups on IP addresses, displaying output in normalized format.
 
     optional arguments:
       -h, --help            show this help message and exit
-      -g GEOIPDIR, --geoipdir GEOIPDIR
-                            Directory containing MaxMind GeoIP databases; Default: ./
-      -d, --download        Download latest GeoIP databases to GEOIPDIR directory and exit.
+      -g GEOIPCONF, --geoipconf GEOIPCONF
+                            Path to GeoIP.conf file used by geoipupdate utility; Default: ./GeoIPData/GeoIP.conf
+      -j, --json            Provide each output record in JSON format.  Ignores -f; Default: False
+      -d, --download        Download latest GeoIP databases to DatabaseDirectory specified in GeoIP.conf and exit.
       -f FORMAT, --format FORMAT
                             Output format string; Default: '"%ip","%lat","%lon","%asnum","%asname"'.
                             Possible values:
                                   %ip : IP Address
-                                 %cc3 : Country Code (3 char)
-                                 %cc2 : Country Code (2 char)
-                               %asnum : AS Number
-                                  %mc : Metro Code
-                                  %dc : DMA Code
-                                  %co : Continent
-                                  %cn : Country Name
-                                  %ac : Telephone Area Code
-                              %asname : AS Name
                                   %ci : City
+                                  %rc : Region Code (State)
+                                  %cn : Country Name
+                                  %pc : Postal (ZIP) Code
+                                  %cc : ISO Country Code
+                                  %co : Continent
+                                  %mc : Metro Code
                                   %tz : Time Zone Name
                                  %lat : Latitude
-                                  %rc : Region Code (State)
                                  %lon : Longitude
-                                  %pc : Postal (ZIP) Code
+                               %asnum : AS Number
+                              %asname : AS Name

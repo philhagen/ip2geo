@@ -1,2 +1,3 @@
-GeoIPASNum.dat
-GeoLiteCity.dat
+GeoIPData/GeoIP.conf
+GeoIPData/*.mmdb
+GeoIPData/.geoipupdate.lock
