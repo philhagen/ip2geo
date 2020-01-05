@@ -19,8 +19,22 @@ Generate custom output format for all IPs in a file (one per line):
 
 Look up a single IP address and display results in JSON:
 
-    echo 192.30.252.122 | ./ip2geo.py -j
-    {"ipaddress": "192.30.252.122", "city": null, "region_code": null, "country_name": "United States", "postal_code": null, "country_code": "US", "continent": "North America", "metro_code": null, "time_zone": "America/Chicago", "latitude": 37.751, "longitude": -97.822, "asnum": 36459, "asname": "GitHub, Inc."}
+    echo 192.30.252.122 | ./ip2geo.py -j | jq '.'
+    {
+    "ipaddress": "192.30.252.122",
+    "city": null,
+    "region_code": null,
+    "country_name": "United States",
+    "postal_code": null,
+    "country_code": "US",
+    "continent": "North America",
+    "metro_code": null,
+    "time_zone": "America/Chicago",
+    "latitude": 37.751,
+    "longitude": -97.822,
+    "asnum": 36459,
+    "asname": "GitHub, Inc."
+    }
 
 Download (or update) GeoIP database files:
 
