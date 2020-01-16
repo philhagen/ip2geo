@@ -1,6 +1,6 @@
 #!env python3
 # ip2geo.py
-# version 2.0
+# version 2.0.1
 # by Phil Hagen <phil@lewestech.com>
 #
 # This script reads IP addresses from STDIN and performs GeoIP database lookups
