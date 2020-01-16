@@ -152,6 +152,7 @@ for line in sys.stdin:
 
         except geoip2.errors.AddressNotFoundError:
             output_record = null_record
+            output_record['ipaddress'] = line
 
         try:
             asn = geoasn.asn(line)
